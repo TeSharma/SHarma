@@ -5,7 +5,7 @@ require('../controllers/registerController');
 const { login } =
 require('../controllers/loginController');
 const { authenticate } = 
-require('../middleware/authMiddleware');
+require('../src/middleware/authMiddleware');
 
 router.post('/register', register);
 router.post('/login', login)
@@ -13,5 +13,5 @@ router.post('/login', login)
 router.get('/protected', authenticate, (req, res) => {
     res.send(`Hello, ${req.user.username}!`);
   });
-  
+
 module.exports = router;
