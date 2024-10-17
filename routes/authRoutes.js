@@ -5,7 +5,7 @@ require('../controllers/registerController');
 const { login } =
 require('../controllers/loginController');
 const { authenticate } = 
-require('../src/middleware/authMiddleware');
+require('../middleware/authMiddleware');
 
 router.post('/register', register);
 router.post('/login', login)
