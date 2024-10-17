@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addTrade } from '../actions/tradeActions';
+import tradeActions from '../actions/tradeActions.js';
 
 const AddTradeForm = ({ dispatch }) => {
   const [trade, setTrade] = useState('');

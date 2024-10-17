@@ -1,9 +1,9 @@
 import React from 'react';
-import TradeComponent from './components/Tradecomponent';
+import TradeComponent from './components/Tradecomponent.js';
 
-import AddTradeForm from './components/AddTradeForm';
-const authRoutes = require('./routes/authRoutes');
-app.use('/api/auth', authRoutes);
+import AddTradeForm from './components/AddTradeForm.js';
+
+
 
 
 function App() {

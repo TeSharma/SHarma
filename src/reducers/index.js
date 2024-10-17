@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import tradeReducer from './tradeReducer';
+import tradeReducer from './tradeReducer.js';
 
 const rootReducer = combineReducers({
     trade:
