@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import {combineReducers} from '@reduxjs/toolkit';
 import tradeReducer from './tradeReducer.js';
 
 const rootReducer = combineReducers({

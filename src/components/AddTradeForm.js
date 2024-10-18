@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import tradeActions from '../actions/tradeActions.js';
+import { addActions } from '../actions/tradeActions.js';
 
-const AddTradeForm = ({ dispatch }) => {
+const AddTradeForm = ({ addTrade }) => {
   const [trade, setTrade] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(addTrade(trade));
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addTrade(trade);
     setTrade('');
   };
 
@@ -24,4 +24,4 @@ const AddTradeForm = ({ dispatch }) => {
   );
 };
 
-export default connect(null, null)(AddTradeForm);
+export default connect(null, { addTrade })(AddTradeForm);
