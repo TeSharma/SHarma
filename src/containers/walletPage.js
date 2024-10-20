@@ -6,6 +6,7 @@ function WalletPage() {
   const [transactions, setTransactions] = useState([]);
   const [depositAmount, setDepositAmount] = useState(0);
   const [withdrawalAmount, setWithdrawalAmount] = useState(0);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchBalance();
@@ -17,7 +18,7 @@ function WalletPage() {
       const response = await axios.get('/api/wallet/balance');
       setBalance(response.data.balance);
     } catch (error) {
-      console.error(error);
+      setError(error.message);
     }
   };
 
@@ -26,35 +27,46 @@ function WalletPage() {
       const response = await axios.get('/api/wallet/transactions');
       setTransactions(response.data.transactions);
     } catch (error) {
-      console.error(error);
+      setError(error.message);
     }
   };
 
   const handleDeposit = async (event) => {
     event.preventDefault();
+    if (depositAmount <= 0) {
+      setError('Invalid deposit amount');
+      return;
+    }
     try {
       const response = await axios.post('/api/wallet/deposit', { amount: depositAmount });
       fetchBalance();
       fetchTransactions();
+      setDepositAmount(0);
     } catch (error) {
-      console.error(error);
+      setError(error.message);
     }
   };
 
   const handleWithdrawal = async (event) => {
     event.preventDefault();
+    if (withdrawalAmount <= 0) {
+      setError('Invalid withdrawal amount');
+      return;
+    }
     try {
       const response = await axios.post('/api/wallet/withdrawal', { amount: withdrawalAmount });
       fetchBalance();
       fetchTransactions();
+      setWithdrawalAmount(0);
     } catch (error) {
-      console.error(error);
+      setError(error.message);
     }
   };
 
   return (
     <div>
       <h1>Wallet Page</h1>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <p>Balance: {balance}</p>
       <form onSubmit={handleDeposit}>
         <label>Deposit Amount:</label>
@@ -68,8 +80,8 @@ function WalletPage() {
       </form>
       <h2>Transaction History:</h2>
       <ul>
-        {transactions.map((transaction) => (
-          <li key={}>
+        {transactions.map((transaction, index) => (
+          <li key={(index)}>
             {transaction.type} {transaction.amount}
           </li>
         ))}

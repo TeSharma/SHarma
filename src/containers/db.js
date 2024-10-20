@@ -1,17 +1,15 @@
 const { mongoose } = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/sharmawallet', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
-  
-  const db = mongoose.connection;
-  
-  db.on('error', (err) => {
-    console.error(err);
-  });
-  
-  db.once('open', () => {
-    console.log('Connected to MongoDB');
-  });
-  
-  module.exports = db;
+
+const DB_URL = 'mongodb://localhost:27017/sharmawallet';
+const OPTIONS = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000
+};
+
+mongoose.connect(DB_URL, OPTIONS)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.error('Connection error:', err));
+
+
+module.exports = mongoose;

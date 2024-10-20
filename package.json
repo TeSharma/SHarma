@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "alchemy-sdk": "^3.4.4",
     "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
     "etheres.js": "^0.0.1-security",
     "ethers": "^5.7.2",
     "jsonwebtoken": "^9.0.2",

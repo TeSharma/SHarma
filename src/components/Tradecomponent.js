@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-
-const TradeComponent = ({ trades }) => {//component code};{
+const TradeComponent = ({ trades }) => {
   return (
     <div>
       <h1>Trades:</h1>

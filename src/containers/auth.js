@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const secretKey = 'Sharma';
 
-// Generate token
+
 const generateToken = (user) => {
   const token = jwt.sign({ 
     id: user._id, 
@@ -12,7 +12,7 @@ const generateToken = (user) => {
   return token;
 };
 
-// Verify token
+
 const verifyToken = (req, res, next) => {
   const token = req.headers['x-access-token'];
   if (!token) return res.status(401).send('Unauthorized');
@@ -23,14 +23,14 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-// Hash password
+
 const hashPassword = async (password) => {
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
   return hash;
 };
 
-// Compare password
+
 const comparePassword = async (password, hash) => {
   const isValid = await bcrypt.compare(password, hash);
   return isValid;
