@@ -21,6 +21,15 @@ module.exports = {
         version: "^0.8.0",
       },
     },
+    rinkeby: {
+      provider: () => new 
+      Web3.providers.HttpProvider('wss://rinkeby.infura.io/ws/v3/de1d3ae43cea4e5d9b013ee85edafc5d'),
+      network_id: 4,
+      gas: 5500000,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
     db: {
       enabled: false,
     },
