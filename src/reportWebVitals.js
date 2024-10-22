@@ -1,15 +1,19 @@
 import { getCLS, getFID, getLCP } from 'web-vitals';
-import ga from 'ga-react'; // Assuming you're using ga-react library
+import { ga } from 'react-ga';
+
+const trackingId = 'G-L1NT7M0VMH';
+ga('create', trackingId, 'auto');
+ga('set', 'sendHitTask', null);
 
 const sendToAnalytics = (metric) => {
-  ga('send', 'event', 'Web Vitals', metric);
+  ga('send', 'event', 'Performance Metrics', metric);
 };
 
 const measureWebVitals = () => {
   try {
-    getCLS((cls) => sendToAnalytics(`CLS: ${cls}`));
-    getFID((fid) => sendToAnalytics(`FID: ${fid}`));
-    getLCP((lcp) => sendToAnalytics(`LCP: ${lcp}`));
+    getCLS((cls) => sendToAnalytics(`CLS Score: ${cls}`));
+    getFID((fid) => sendToAnalytics(`FID Score: ${fid}`));
+    getLCP((lcp) => sendToAnalytics(`LCP Score: ${lcp}`));
   } catch (error) {
     console.error('Error measuring web vitals:', error);
   }
