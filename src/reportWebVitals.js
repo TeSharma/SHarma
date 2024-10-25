@@ -1,4 +1,4 @@
-import { getCLS, getFID, getLCP } from 'web-vitals';
+import { onCLS, onFID, onLCP } from 'web-vitals';
 import { ga } from 'react-ga';
 
 const trackingId = 'G-L1NT7M0VMH';
@@ -11,9 +11,9 @@ const sendToAnalytics = (metric) => {
 
 const measureWebVitals = () => {
   try {
-    getCLS((cls) => sendToAnalytics(`CLS Score: ${cls}`));
-    getFID((fid) => sendToAnalytics(`FID Score: ${fid}`));
-    getLCP((lcp) => sendToAnalytics(`LCP Score: ${lcp}`));
+    onCLS((cls) => sendToAnalytics(`CLS Score: ${cls}`));
+    onFID((fid) => sendToAnalytics(`FID Score: ${fid}`));
+    onLCP((lcp) => sendToAnalytics(`LCP Score: ${lcp}`));
   } catch (error) {
     console.error('Error measuring web vitals:', error);
   }
@@ -21,11 +21,11 @@ const measureWebVitals = () => {
 
 const reportWebVitals = (onPerfEntry) => {
   if (typeof onPerfEntry === 'function') {
-    import('web-vitals').then(({ getCLS, getFID, getLCP }) => {
+    import('web-vitals').then(({ onCLS, onFID, onLCP }) => {
       try {
-        getCLS(onPerfEntry);
-        getFID(onPerfEntry);
-        getLCP(onPerfEntry);
+        onCLS(onPerfEntry);
+        onFID(onPerfEntry);
+        onLCP(onPerfEntry);
       } catch (error) {
         console.error('Error reporting web vitals:', error);
       }
@@ -36,4 +36,5 @@ const reportWebVitals = (onPerfEntry) => {
 };
 
 measureWebVitals();
+
 export default reportWebVitals;
